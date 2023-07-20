@@ -1,0 +1,44 @@
+settings:
+  path: 
+    pdfreader: "http://pdfreader:8081"
+    pdfcreator: "http://pdfcreator:8084"
+
+server:
+  port: 8080
+  # ssl:
+  #  enabled: true
+  #  key-alias: cvizard.com
+  #  key-store-password: cvizard
+  #  key-store: classpath:cvizard.com.p12
+  #  key-store-type: PKCS12
+  #  trust-store: classpath:cvizard.com.p12
+  #  trust-store-password: cvizard
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: apigateway
+  cloud:
+    gateway: 
+      routes:
+        - id: pdf_reader_route
+          uri: ${settings.path.pdfreader}
+          predicates:
+            - Path=/api/reader/**
+        - id: pdf_creator_route
+          uri: ${settings.path.pdfcreator}
+          predicates:
+            - Path=/api/creator/**
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedHeaders: '*'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
