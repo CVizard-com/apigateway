@@ -4,7 +4,15 @@ settings:
     pdfcreator: "http://pdfcreator:8084"
 
 server:
-  port: 8080
+  port: 8443
+  server:
+    ssl:
+      key-store: classpath:keystore.p12
+      key-store-password: cvizard
+      key-store-type: PKCS12
+      key-alias: spring
+      enabled: true
+
   # ssl:
   #  enabled: true
   #  key-alias: cvizard.com
@@ -42,3 +50,6 @@ spring:
               - POST
               - PUT
               - DELETE
+      httpclient:
+        ssl:
+          useInsecureTrustManager: true
