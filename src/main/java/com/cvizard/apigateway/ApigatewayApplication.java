@@ -1,5 +1,6 @@
 package com.cvizard.apigateway;
 
+import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.boot.SpringApplication;
@@ -28,8 +29,17 @@ public class ApigatewayApplication {
                 context.addConstraint(securityConstraint);
             }
         };
+            tomcat.addAdditionalTomcatConnectors(httpToHttpsRedirectConnector());
         return tomcat;
         }
+    private Connector httpToHttpsRedirectConnector() {
+        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+        connector.setScheme("http");
+        connector.setPort(8082);
+        connector.setSecure(false);
+        connector.setRedirectPort(8443);
+        return connector;
+    }
 
     }
 

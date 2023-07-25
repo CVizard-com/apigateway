@@ -5,13 +5,12 @@ settings:
 
 server:
   port: 8443
-  server:
-    ssl:
-      key-store: src/main/resources/keystore.p12
-      key-store-password: cvizard
-      key-store-type: PKCS12
-      key-alias: springboot
-      enabled: true
+  ssl:
+    key-store: /src/main/resources/gateway.p12
+    key-store-password: cvizard
+    key-store-type: PKCS12
+    key-alias: springboot
+    enabled: true
 
   # ssl:
   #  enabled: true
