@@ -6,6 +6,7 @@ RUN mvn clean package -DskipTests
 
 FROM amazoncorretto:17
 WORKDIR /app
+VOLUME /tmp
 COPY --from=build /app/target/apigateway.jar .
-EXPOSE 8080
+EXPOSE 8443
 CMD ["java", "-jar", "apigateway.jar"]
