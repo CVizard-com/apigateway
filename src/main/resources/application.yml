@@ -6,7 +6,7 @@ settings:
 server:
   port: 8443
   ssl:
-    key-store: classpath:fullchain1.pem
+    key-store: classpath:certificate.pem
     key-store-password:
     key-store-type: PEM
     enabled: true
