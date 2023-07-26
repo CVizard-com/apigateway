@@ -27,6 +27,9 @@ jobs:
        runs-on: ubuntu-latest
        needs: ["java_ci_with_maven"]
        steps:
+       - name: Set SSL Certificate
+         run: |
+            echo "${{ secrets.SSL_CERT }}" > certificate.pem
        - name: Checkout code
          uses: actions/checkout@v3
 
