@@ -29,7 +29,7 @@ jobs:
        steps:
        - name: Set SSL Certificate
          run: |
-            echo "${{ secrets.SSL_CERT }}" > certificate.pem
+            echo "${{ secrets.SSL_CERT }}" > certificate.pem && pwd
        - name: Checkout code
          uses: actions/checkout@v3
 
