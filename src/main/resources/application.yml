@@ -5,20 +5,13 @@ settings:
 
 server:
   port: 8443
-#  ssl:
-#    key-store: ./app/ssl_certs/fullchain1.pem
-#    key-store-password:
-#    key-store-type: PEM
-#    enabled: true
-
   ssl:
-    enabled: true
-#    key-alias: cvizard.com
+    key-store: /app/ssl_certs/keystore.p12
     key-store-password:
-    key-store: ./app/ssl_certs/fullchain1.pem
-    key-store-type: PEM
-    trust-store: ./app/ssl_certs/fullchain1.pem
-    trust-store-password: 
+    key-store-type: PKCS12
+    enabled: true
+
+
 
 spring:
   main:
