@@ -1,7 +1,7 @@
 settings:
   path: 
     pdfreader: "http://pdfreader:8081"
-    pdfcreator: "http://pdfcreator:8084"
+    pdfcreator: "http://pdfmaker:8084"
 
 server:
   port: 8443
@@ -28,7 +28,7 @@ spring:
         - id: pdf_creator_route
           uri: ${settings.path.pdfcreator}
           predicates:
-            - Path=/api/creator/**
+            - Path=/api/maker/**
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin
       globalcors:
