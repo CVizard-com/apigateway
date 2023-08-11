@@ -1,7 +1,8 @@
 settings:
-  path: 
+  path:
     pdfreader: "http://pdfreader:8081"
     pdfcreator: "http://pdfmaker:8084"
+    pdfcleaner: "http://pdfcleaner:8082"
 
 server:
   port: 8443
@@ -11,20 +12,22 @@ server:
     key-store-type: PKCS12
     enabled: true
 
-
-
 spring:
   main:
     web-application-type: reactive
   application:
     name: apigateway
   cloud:
-    gateway: 
+    gateway:
       routes:
         - id: pdf_reader_route
           uri: ${settings.path.pdfreader}
           predicates:
             - Path=/api/reader/**
+        - id: pdf_cleaner_route
+          uri: ${settings.path.pdfcleaner}
+          predicates:
+            - Path=/api/cleaner/**
         - id: pdf_creator_route
           uri: ${settings.path.pdfcreator}
           predicates:
@@ -33,9 +36,9 @@ spring:
         - DedupeResponseHeader=Access-Control-Allow-Origin
       globalcors:
         corsConfigurations:
-          '[/**]':
-            allowedOrigins: '*'
-            allowedHeaders: '*'
+          "[/**]":
+            allowedOrigins: "*"
+            allowedHeaders: "*"
             allowedMethods:
               - GET
               - POST
