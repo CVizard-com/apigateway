@@ -2,7 +2,7 @@ settings:
   path:
     pdfreader: "http://pdfreader:8081"
     pdfcreator: "http://pdfmaker:8084"
-    pdfcleaner: "http://pdfcleaner:8082"
+    pdfcleaner: "http://textcleaner:8082"
 
 server:
   port: 8443
