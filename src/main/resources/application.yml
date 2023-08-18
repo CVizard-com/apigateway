@@ -42,8 +42,3 @@ spring:
             allowedMethods:
               - GET
               - POST
-              - PUT
-              - DELETE
-      httpclient:
-        ssl:
-          useInsecureTrustManager: true
