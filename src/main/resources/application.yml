@@ -37,7 +37,7 @@ spring:
       globalcors:
         corsConfigurations:
           "[/**]":
-            allowedOrigins: "https://cvizard.com:5173"
+            allowedOrigins: "https://cvizard.com:443"
             allowedHeaders: "*"
             allowedMethods:
               - GET
