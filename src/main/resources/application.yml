@@ -33,7 +33,7 @@ spring:
           predicates:
             - Path=/api/maker/**
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
         corsConfigurations:
           "[/**]":
