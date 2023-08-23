@@ -33,12 +33,17 @@ spring:
           predicates:
             - Path=/api/maker/**
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
       globalcors:
         corsConfigurations:
           "[/**]":
-            allowedOrigins: "https://cvizard.com"
+            allowedOrigins: "*"
             allowedHeaders: "*"
             allowedMethods:
               - GET
               - POST
+              - PUT
+              - DELETE
+#      httpclient:
+#        ssl:
+#          useInsecureTrustManager: true
