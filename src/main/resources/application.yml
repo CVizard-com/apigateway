@@ -33,7 +33,7 @@ spring:
           predicates:
             - Path=/api/maker/**
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
       globalcors:
         corsConfigurations:
           "[/**]":
@@ -44,6 +44,6 @@ spring:
               - POST
               - PUT
               - DELETE
-      httpclient:
-        ssl:
-          useInsecureTrustManager: true
+#      httpclient:
+#        ssl:
+#          useInsecureTrustManager: true
