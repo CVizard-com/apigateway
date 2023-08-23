@@ -15,6 +15,7 @@ server:
 spring:
   main:
     web-application-type: reactive
+    allow-bean-definition-overriding: true
   application:
     name: apigateway
   cloud:
@@ -32,18 +33,3 @@ spring:
           uri: ${settings.path.pdfcreator}
           predicates:
             - Path=/api/maker/**
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin
-      globalcors:
-        corsConfigurations:
-          "[/**]":
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-      httpclient:
-        ssl:
-          useInsecureTrustManager: true
