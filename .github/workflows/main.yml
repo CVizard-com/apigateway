@@ -3,9 +3,11 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches-ignore:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   java_ci_with_maven:
@@ -52,29 +54,29 @@ jobs:
            tags: cvizard.com:5001/apigateway:${{ github.sha }}
            
   deploy:
-      runs-on: ubuntu-latest
-      needs: ["docker_build_and_push"]
-      steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        
-      - name: install ssh
-        run: sudo apt-get install -y ssh
-        
-      - name: Login to Docker Registry
-        uses: docker/login-action@v1
-        with:
-          registry: https://cvizard.com:5001
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+    runs-on: ubuntu-latest
+    needs: ["docker_build_and_push"]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: install ssh
+      run: sudo apt-get install -y ssh
+      
+    - name: Login to Docker Registry
+      uses: docker/login-action@v1
+      with:
+        registry: https://cvizard.com:5001
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            docker login cvizard.com:5001 -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            sed -i 's|cvizard.com:5001/apigateway:.*|cvizard.com:5001/apigateway:${{ github.sha }}|' CVizard/docker-compose.yml
-            cd CVizard && docker compose stop apigateway && docker compose build apigateway && docker compose up -d apigateway
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          docker login cvizard.com:5001 -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          sed -i 's|cvizard.com:5001/apigateway:.*|cvizard.com:5001/apigateway:${{ github.sha }}|' CVizard/docker-compose.yml
+          cd CVizard && docker compose stop apigateway && docker compose build apigateway && docker compose up -d apigateway
