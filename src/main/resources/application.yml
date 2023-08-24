@@ -3,7 +3,7 @@ settings:
     pdfreader: "http://pdfreader:8081"
     pdfcreator: "http://pdfmaker:8084"
     textcleaner: "http://textcleaner:8082"
-    gotenberg: "http://gotenberg:3000"
+    gotenberg: "http://gotenberg:3000/forms/libreoffice/convert"
 
 server:
   port: 8443
