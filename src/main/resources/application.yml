@@ -33,7 +33,6 @@ spring:
           uri: ${settings.path.pdfcreator}
           predicates:
             - Path=/api/maker/**
-            -
         - id: gotenberg_preview_route
           uri: ${settings.path.gotenberg}
           predicates:
