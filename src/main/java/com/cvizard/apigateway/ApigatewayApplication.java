@@ -16,6 +16,7 @@ public class ApigatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(ApigatewayApplication.class, args);
     }
+
     @Bean
     public ServletWebServerFactory servletContainer() {
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory(){
@@ -31,7 +32,8 @@ public class ApigatewayApplication {
         };
             tomcat.addAdditionalTomcatConnectors(httpToHttpsRedirectConnector());
         return tomcat;
-        }
+    }
+
     private Connector httpToHttpsRedirectConnector() {
         Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
         connector.setScheme("http");
@@ -41,5 +43,5 @@ public class ApigatewayApplication {
         return connector;
     }
 
-    }
+}
 
