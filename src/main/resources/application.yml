@@ -44,6 +44,3 @@ spring:
               - POST
               - PUT
               - DELETE
-#      httpclient:
-#        ssl:
-#          useInsecureTrustManager: true
