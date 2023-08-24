@@ -36,7 +36,7 @@ spring:
         - id: gotenberg_preview_route
           uri: ${settings.path.gotenberg}
           predicates:
-            - Path=/gotenberg/**
+            - Path=/gotenberg/forms/libreoffice/convert/**
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
